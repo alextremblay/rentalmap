@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>Rentals Map</title>
+    <!-- Bootstrap v4.2.1 CSS via CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    
+    <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
+    
+    <!-- Theme style -->
+    <link href="assets/css/theme-style.min.css" rel="stylesheet">
+    
+    <!-- Shop UI CSS - required if using shopping cart or any shop pages -->
+    <link href="assets/css/theme-shop.min.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container body-content">
+        <div id="app" v-cloak>
+            <v-app>
+                <spa-toolbar :title="msg"></spa-toolbar>
+                <router-view></router-view>
+            </v-app>
+        </div>
+    </div>
+
+    <script src="./js/site.js"></script>
+    <script src="./js/listings.js"></script>
+    <script src="./js/vue-google-maps.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.20.1/moment.min.js"></script>
+    <script src="https://unpkg.com/vee-validate@2.0.0-rc.25/dist/vee-validate.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/http-vue-loader"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+    <!-- Vue Pages and Components here -->
+    <script src='./pages/list.vue.js'></script>
+    <script src='./pages/map.vue.js'></script>
+    <script src='./pages/components/toolbar.vue.js'></script>
+
+    <script>
+        Vue.use(VueRouter);
+        Vue.use(VeeValidate);
+        Vue.use(Vuetify);
+        Vue.use(VueGoogleMaps, {
+            load: {
+                key: 'AIzaSyDV75BbmSjWkUSL0BeBFxpNQf79ggwigfI',
+                libraries: 'places', 
+            },
+        })
+
+        const routes = [{
+                path: '/',
+                component: spalist,
+                props: {'listings': this.listings   }
+            },
+            {
+                path: '/map',
+                component: spamap,
+                props: {'listings': this.listings   }
+            }
+        ]
+
+        const router = new VueRouter({
+            routes // short for `routes: routes`
+        })
+
+        var app = new Vue({
+            el: '#app',
+            watch: {},
+            data: {
+                msg: 'Rentals Map',
+                listings: listings
+            },
+            methods: {},
+            router
+        })
+    </script>
+
+</body>
+
+</html>
