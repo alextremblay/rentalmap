@@ -1815,7 +1815,7 @@ var listings = [
         "postal-code": "M1L4G9",
         "open-houses": null,
         "style-name": "house-detached",
-        "image-url": null,
+        "image-url": "https://ember.zoocasa.com/assets/images/no-images-available-438bed6ad7212dd22cd6a2a76773a04b.svg",
         "added-at": "2018-11-06T14:36:50.497Z",
         "expired-at": null,
         "sold-price": null,
