@@ -1316,7 +1316,8 @@ var listings = [
             }
         ]
     }
-]var metadata = {
+]
+var metadata = {
     "initial-count": 88,
     "non-apartments-in-correct-city": 40,
     "listings-in-range": 14
